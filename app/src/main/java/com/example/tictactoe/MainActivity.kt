@@ -3,6 +3,7 @@ package com.example.tictactoe
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
@@ -53,6 +54,9 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-    private fun
+    private fun onButtonClick(view: View) {
+        val p1Move = 1
+        m1.plus(p1Move)
+    }
 }
 
