@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var a0: Button
@@ -16,10 +17,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var a6: Button
     private lateinit var a7: Button
     private lateinit var a8: Button
+    private lateinit var tv: TextView
 
-    val player1 = 0
-    val player2 = 1
-    var activePlayer = player1
+    private val player1 = 0
+    private val player2 = 1
+    private var activePlayer = player1
     lateinit var filledPosition: IntArray
 
 
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         filledPosition = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1)
 
+        tv = findViewById(R.id.textView3)
         a0 = findViewById(R.id.a0)
         a1 = findViewById(R.id.a1)
         a2 = findViewById(R.id.a2)
@@ -65,10 +68,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if(activePlayer == player1) {
             btnClicked.text = "O"
             activePlayer = player2
+            tv.text = "Player 2 Turn"
         } else{
             btnClicked.text= "X"
             activePlayer = player1
+            tv.text = "Player 1 Turn"
         }
+
+        checkForWin()
+    }
+
+    private fun checkForWin() {
+
     }
 }
 
