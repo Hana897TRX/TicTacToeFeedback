@@ -17,12 +17,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var a7: Button
     private lateinit var a8: Button
 
+    val player1 = 0
+    val player2 = 1
+    var activePlayer = player1
+    lateinit var filledPosition: IntArray
+
 
 
     @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        filledPosition = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1)
 
         a0 = findViewById(R.id.a0)
         a1 = findViewById(R.id.a1)
@@ -48,8 +55,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(p0: View?) {
         var btnClicked = findViewById<Button>(p0!!.id)
-        btnClicked.text = "0"
+        var clickedTag = Integer.parseInt(btnClicked.tag.toString())
 
+        if (filledPosition[clickedTag]!=-1)
+            return
+
+        filledPosition[clickedTag] = activePlayer
+
+        if(activePlayer == player1) {
+            btnClicked.text = "O"
+            activePlayer = player2
+        } else{
+            btnClicked.text= "X"
+            activePlayer = player1
+        }
     }
 }
 
