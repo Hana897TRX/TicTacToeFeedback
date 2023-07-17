@@ -1,11 +1,13 @@
 package com.example.tictactoe
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var a0: Button
@@ -22,7 +24,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val player1 = 0
     private val player2 = 1
     private var activePlayer = player1
-    lateinit var filledPosition: IntArray
+    lateinit var filledPos: IntArray
+
+    var gameActive = true
 
 
 
@@ -31,7 +35,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        filledPosition = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1)
+        filledPos = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1)
 
         tv = findViewById(R.id.textView3)
         a0 = findViewById(R.id.a0)
@@ -57,13 +61,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
     override fun onClick(p0: View?) {
+
+        if(!gameActive)
+            return
+
         var btnClicked = findViewById<Button>(p0!!.id)
         var clickedTag = Integer.parseInt(btnClicked.tag.toString())
 
-        if (filledPosition[clickedTag]!=-1)
+        if (filledPos[clickedTag]!=-1)
             return
 
-        filledPosition[clickedTag] = activePlayer
+        filledPos[clickedTag] = activePlayer
 
         if(activePlayer == player1) {
             btnClicked.text = "O"
@@ -79,7 +87,64 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun checkForWin() {
+        var winPos = arrayOf(
+            intArrayOf(0,1,2),
+            intArrayOf(3,4,5),
+            intArrayOf(6,7,8),
+            intArrayOf(0,3,6),
+            intArrayOf(1,4,7),
+            intArrayOf(2,5,8),
+            intArrayOf(0,4,8),
+            intArrayOf(2,4,6),
+        )
 
+        for (i in 0 until winPos.size) {
+            var val0 = winPos [i][0]
+            var val1 = winPos [i][1]
+            var val2 = winPos [i][2]
+
+            if(filledPos[val0]==filledPos[val1] && filledPos[val1]==filledPos[val2]){
+                if(filledPos[val0]!=-1) {
+                    gameActive = false
+                    if (filledPos[val0]== player1) {
+                        showMessage("Player 1 Wins")
+                        //tv.text=("Player 1 Wins")
+                    } else {
+                        //tv.text=("Player 2 Wins")
+                        showMessage("Player 2 Wins")
+                    }
+                }
+            }
+        }
+
+    }
+
+    private fun showMessage(s: String) {
+        AlertDialog.Builder(this)
+            .setMessage(s)
+            .setTitle("Tic Tac Toe")
+            .setPositiveButton("Restart Game", DialogInterface.OnClickListener { dialogInterface, i ->
+                restartGame()
+            })
+            .show()
+
+
+    }
+
+    private fun restartGame() {
+        filledPos = intArrayOf(-1,-1,-1,-1,-1,-1,-1,-1,-1)
+        activePlayer = player1
+        gameActive = true
+        tv.text=("Player 1 Turn")
+        a0.text=("")
+        a1.text=("")
+        a2.text=("")
+        a3.text=("")
+        a4.text=("")
+        a5.text=("")
+        a6.text=("")
+        a7.text=("")
+        a8.text=("")
     }
 }
 
