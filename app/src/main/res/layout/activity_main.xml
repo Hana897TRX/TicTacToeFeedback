@@ -103,47 +103,47 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:gravity="center"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal"
             android:textColor="@color/black">
 
             <Button
                 android:id="@+id/a3"
-                android:textSize="60sp"
-                android:layout_margin="10sp"
-                android:background="#00FFFFFF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="3"
+                android:layout_margin="10sp"
+                android:background="#00FFFFFF"
+                android:tag="3"
                 android:textColor="@color/black"
-                android:tag="3">
+                android:textSize="60sp"
+                tools:text="3">
 
             </Button>
 
             <Button
                 android:id="@+id/a4"
-                android:textSize="60sp"
-                android:layout_margin="10sp"
                 android:layout_width="wrap_content"
-                android:background="#00FFFFFF"
                 android:layout_height="wrap_content"
-                tools:text="4"
+                android:layout_margin="10sp"
+                android:background="#00FFFFFF"
+                android:tag="4"
                 android:textColor="@color/black"
-                android:tag="4">
+                android:textSize="60sp"
+                tools:text="4">
 
             </Button>
 
             <Button
                 android:id="@+id/a5"
-                android:textSize="60sp"
-                android:layout_margin="10sp"
                 android:layout_width="wrap_content"
-                android:background="#00FFFFFF"
                 android:layout_height="wrap_content"
-                tools:text="5"
+                android:layout_margin="10sp"
+                android:background="#00FFFFFF"
+                android:tag="5"
                 android:textColor="@color/black"
-                android:tag="5">
+                android:textSize="60sp"
+                tools:text="5">
 
             </Button>
 
